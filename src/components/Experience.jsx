@@ -1,11 +1,20 @@
-export const Experience = () => {
+import { OrbitControls } from '@react-three/drei';
+import { motion } from 'framer-motion-3d';
+import { Office } from './Office';
+import { useEffect, useRef } from 'react';
+import * as THREE from 'three';
+import { useThree } from '@react-three/fiber';
+
+export const Experience = ({section}) => {
     return (
         <>
-            <ambientLight intensity={1} />
-            <mesh scale={1.5}>
-                <boxGeometry args={[1, 1, 1]} />
-                <meshStandardMaterial color={'hotpink'} />
-            </mesh>
+            <OrbitControls />
+            {/* <ambientLight intensity={2} /> */}
+            <directionalLight debug={true} position={[2, 2.4, 2.7]} intensity={5} />
+
+            <motion.group animate={{y: section === 0 ? 0 : -1}}>
+                <Office position={[1, -1.3, 0]} scale={[0.6, 0.5, 0.5]} rotation={[1.2, 1.4, -1]} />
+            </motion.group>
         </>
     );
 };

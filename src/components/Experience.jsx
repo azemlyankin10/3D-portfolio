@@ -9,7 +9,7 @@ export const Experience = ({section}) => {
     return (
         <>
             {/* <OrbitControls /> */}
-            {/* <ambientLight intensity={2} /> */}
+            <ambientLight intensity={1} />
             <motion.group animate={{y: section === 0 ? 0 : -1}}>
                 <Office position={[1, -1.3, 0]} scale={[0.6, 0.5, 0.5]} rotation={[1.2, 1.4, -1]} />
             </motion.group>

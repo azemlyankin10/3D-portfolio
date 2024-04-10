@@ -22,19 +22,19 @@ export function Office(props) {
                 castShadow
                 receiveShadow
                 geometry={nodes['mirror-element-to-modify'].geometry}
-                material={textureMaterial}
                 position={[0.635, 0.117, 5.87]}
-                rotation={[Math.PI, -1.123, Math.PI]}
-            />
+                rotation={[Math.PI, -1.123, Math.PI]}>
+                <meshStandardMaterial color='white' />
+            </mesh>
             <mesh
                 name='foto-frame'
                 castShadow
                 receiveShadow
                 geometry={nodes['foto-frame'].geometry}
-                material={textureMaterial}
                 position={[2.447, 7.98, -0.418]}
-                rotation={[-0.261, 0, 1.583]}
-            />
+                rotation={[-0.261, 0, 1.583]}>
+                <meshStandardMaterial color='white' />
+            </mesh>
             <mesh
                 name='floor-and-walls'
                 castShadow
@@ -48,37 +48,38 @@ export function Office(props) {
                 castShadow
                 receiveShadow
                 geometry={nodes['monitor-screen-to-modify'].geometry}
-                material={textureMaterial}
                 position={[2.091, 3.609, 0.418]}
-                rotation={[0, 1.547, 0]}
-            />
+                rotation={[0, 1.547, 0]}>
+                <meshStandardMaterial color='white' />
+            </mesh>
             <mesh
                 name='window2-glass-to-modify'
                 castShadow
                 receiveShadow
                 geometry={nodes['window2-glass-to-modify'].geometry}
-                material={textureMaterial}
                 position={[2.529, 4.494, 5.01]}
-                rotation={[0, 0, 1.569]}
-            />
+                rotation={[0, 0, 1.569]}>
+                <meshStandardMaterial color='white' />
+            </mesh>
             <mesh
                 name='window-glass-to-modify'
                 castShadow
                 receiveShadow
                 geometry={nodes['window-glass-to-modify'].geometry}
-                material={textureMaterial}
+                // material={textureMaterial}
                 position={[2.541, 4.494, -3.974]}
-                rotation={[0, 0, 1.569]}
-            />
+                rotation={[0, 0, 1.569]}>
+                <meshStandardMaterial color='white' />
+            </mesh>
             <mesh
                 name='laptop-screen-to-modify'
                 castShadow
                 receiveShadow
                 geometry={nodes['laptop-screen-to-modify'].geometry}
-                material={textureMaterial}
                 position={[1.424, 3.151, -1.596]}
-                rotation={[0.274, -1.125, 0.269]}
-            />
+                rotation={[0.274, -1.125, 0.269]}>
+                <meshStandardMaterial color='white' />
+            </mesh>
             <mesh
                 name='wires'
                 castShadow
@@ -414,7 +415,7 @@ export function Office(props) {
                 position={[0.423, 0.489, 7.42]}
                 rotation={[1.877, 0.69, 1.952]}
             />
-            <group name='RootNode' position={[-5.161, 1.026, -6.174]} scale={0.232}>
+            {/* <group name='RootNode' position={[-5.161, 1.026, -6.174]} scale={0.232}>
                 <mesh
                     name='Circle'
                     castShadow
@@ -434,7 +435,7 @@ export function Office(props) {
                     rotation={[-Math.PI / 2, 0, 0]}
                     scale={100}
                 />
-            </group>
+            </group> */}
         </group>
     );
 }

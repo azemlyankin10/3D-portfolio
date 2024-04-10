@@ -8,7 +8,7 @@ import { useThree } from '@react-three/fiber';
 export const Experience = ({section}) => {
     return (
         <>
-            {/* <OrbitControls /> */}
+            <OrbitControls />
             <ambientLight intensity={1} />
             <motion.group animate={{y: section === 0 ? 0 : -1}}>
                 <Office position={[1, -1.3, 0]} scale={[0.6, 0.5, 0.5]} rotation={[1.2, 1.4, -1]} />

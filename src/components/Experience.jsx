@@ -19,9 +19,10 @@ export const Experience = ({ section }) => {
             {/* <OrbitControls /> */}
             {/* <Sky /> */}
             <ambientLight intensity={1} />
+            <Avatar animationName={animation} />
+
             <motion.group animate={{ y: section === 0 ? 0 : -1 }}>
-                <Avatar animationName={animation} />
-                <Office position={[1, -1.3, 0]} scale={[0.6, 0.5, 0.5]} rotation={[1.2, 1.4, -1]} />
+                <Office section={section} />
             </motion.group>
         </>
     );

@@ -27,7 +27,7 @@ export function Avatar({ animationName }) {
         return () => {
             actions[animationName]?.reset().fadeOut(0)
         }
-    }, [animationName]);
+    }, [animationName, actions]);
 
     useEffect(() => {
       Object.values(materials).forEach((material) => {
@@ -37,7 +37,7 @@ export function Avatar({ animationName }) {
 
     return (
         <group ref={group} dispose={null}>
-            <group scale={[1.5, 1.5, 1.5]} rotation-x={-Math.PI / 2} rotation-z={Math.PI } rotation-y={0.2} position-z={0.9} position-x={1.1} position-y={-1.19}>
+
                 <primitive object={nodes.Hips} />
                 <skinnedMesh
                     name='EyeLeft'
@@ -110,7 +110,7 @@ export function Avatar({ animationName }) {
                     material={materials.Wolf3D_Body}
                     skeleton={nodes.Wolf3D_Body.skeleton}
                 />
-            </group>
+
         </group>
     );
 }

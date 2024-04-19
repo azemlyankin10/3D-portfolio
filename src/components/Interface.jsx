@@ -1,4 +1,6 @@
 import { motion } from 'framer-motion';
+import { ScrollManager } from './ScrollManager';
+import { Scroll } from '@react-three/drei';
 
 const Section = ({ children }) => {
     return (
@@ -18,7 +20,7 @@ export const Interface = () => {
             <AboutSection />
             <SkillsSection />
             <ProjectSection />
-            <ContactSection />
+            {/* <ContactSection /> */}
         </div>
     );
 };

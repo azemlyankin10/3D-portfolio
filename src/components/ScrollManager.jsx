@@ -3,7 +3,7 @@ import { useFrame } from '@react-three/fiber';
 import gsap from 'gsap';
 import { useEffect, useRef } from 'react';
 
-export const ScrollManager = ({ section, onSectionChange }) => {
+export const ScrollManager = ({ section, onSectionChange, onCurrentPageChange }) => {
     const data = useScroll();
     const lastScroll = useRef(0);
     const isAnimation = useRef(false);
@@ -24,6 +24,7 @@ export const ScrollManager = ({ section, onSectionChange }) => {
         });
     }, [section]);
 
+    let currentPage = 0;
     useFrame(() => {
         // If the user is scrolling, we don't want to trigger the section change
         if (isAnimation.current) {
@@ -32,6 +33,10 @@ export const ScrollManager = ({ section, onSectionChange }) => {
         }
         // If the user has stopped scrolling, we can trigger the section change
         const curSection = Math.floor(data.scroll.current * data.pages);
+        if (curSection !== currentPage) {
+            currentPage = curSection;
+            onCurrentPageChange(currentPage);
+        }
         if (data.scroll.current > lastScroll.current && curSection === 0) {
             onSectionChange(1);
         }

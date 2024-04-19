@@ -1,7 +1,7 @@
 import { Float, MeshDistortMaterial, MeshWobbleMaterial, Sky } from '@react-three/drei';
 import { motion } from 'framer-motion-3d';
 import { Office } from './Office';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { useFrame, useThree } from '@react-three/fiber';
 import { Avatar } from './Avatar';
@@ -9,14 +9,16 @@ import { useControls } from 'leva';
 import { animate, useMotionValue } from 'framer-motion';
 import { motionConfig } from '../config';
 
-export const Experience = ({ section, isMenuOpened }) => {
+export const Experience = ({ section, isMenuOpened, currentPage }) => {
+    console.log(currentPage);
     const { viewport } = useThree();
-    const { animation } = useControls({
-        animation: {
-            value: 'Typing',
-            options: ['Typing', 'Standing', 'Falling'],
-        },
-    });
+    const [currentAnimation, setCurrentAnimation] = useState('Typing')
+    // const { animation } = useControls({
+    //     animation: {
+    //         value: 'Typing',
+    //         options: ['Typing', 'Standing', 'Kneeling'],
+    //     },
+    // });
 
     const cameraPositionX = useMotionValue()
     const cameraLookAtX = useMotionValue()
@@ -32,15 +34,41 @@ export const Experience = ({ section, isMenuOpened }) => {
         state.camera.lookAt(cameraLookAtX.get(), 0, 0)
     })
 
+    useEffect(() => {
+        if (section === 0) {
+            setCurrentAnimation('Typing')
+        } else if (section === 1 && currentPage < 2) {
+            setCurrentAnimation('Standing')
+        } else if (currentPage === 2 || currentPage === 3) {
+            setCurrentAnimation('Kneeling')
+        }
+    }, [section, currentPage])
+
     return (
         <>
             {/* <OrbitControls /> */}
             {/* <Sky /> */}
             <ambientLight intensity={1} />
 
-            <group scale={[1.5, 1.5, 1.5]} rotation-x={-Math.PI / 2} rotation-z={Math.PI } rotation-y={0.2} position-z={0.9} position-x={1.1} position-y={-1.19}>
-                <Avatar animationName={animation} />
-            </group>
+            <motion.group
+                scale={[1.5, 1.5, 1.5]}
+                rotation-x={-Math.PI / 2}
+                rotation-z={Math.PI }
+                rotation-y={0.2}
+                position-z={0.9}
+                position-x={1.1}
+                position-y={-1.19}
+                animate={[ section === 0 && "section0", section === 1 && "section1", (currentPage === 2 || currentPage === 3) && "section2"]}
+                transition={{ duration: 1 }}
+                variants={{
+                    section0: { y: -1.19, z: 0.9, x: 1.1, rotateZ: Math.PI, rotateY: 0.2 },
+                    section1: { y: -10.2, z: 5, x: 5, rotateZ: Math.PI / 6, rotateY: 0 },
+                    section2: { y: -19.5, z: 5, x: 5, rotateZ: Math.PI / 6, rotateY: 0 },
+                    // section3: { y: -25.2, z: 5, x: 5, rotateZ: Math.PI / 6, rotateY: 0 },
+                }}
+            >
+                <Avatar animationName={currentAnimation} />
+            </motion.group>
             <motion.group animate={{ y: section === 0 ? 0 : -1 }}>
                 <Office section={section} />
 

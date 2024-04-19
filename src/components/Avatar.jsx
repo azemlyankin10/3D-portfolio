@@ -17,10 +17,10 @@ export function Avatar({ animationName }) {
     typingAnimation[0].name = 'Typing';
     const { animations: standingAnimation } = useFBX('animations/standing.fbx');
     standingAnimation[0].name = 'Standing';
-    const { animations: fallingAnimation } = useFBX('animations/Falling.fbx');
-    fallingAnimation[0].name = 'Falling';
+    const { animations: kneelingAnimation } = useFBX('animations/Kneeling Pointing.fbx');
+    kneelingAnimation[0].name = 'Kneeling';
 
-    const { actions } = useAnimations([typingAnimation[0], standingAnimation[0], fallingAnimation[0]], group);
+    const { actions } = useAnimations([typingAnimation[0], standingAnimation[0], kneelingAnimation[0]], group);
 
     useEffect(() => {
         actions[animationName].reset().play();

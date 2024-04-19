@@ -11,6 +11,7 @@ import { motionConfig } from './config';
 
 export const App = () => {
     const [section, setSection] = useState(0);
+    const [currentPage, setCurrentPage] = useState(0);
     const [menuOpened, setMenuOpened] = useState(false);
 
     useEffect(() => {
@@ -21,10 +22,10 @@ export const App = () => {
         <MotionConfig transition={{ ...motionConfig }}>
             <Canvas shadows camera={{ position: [6, 0, 10], fov: 42 }}>
                 <color attach='background' args={['#cdcdcd']} />
-                <ScrollControls pages={4} damping={0.1}>
-                    <ScrollManager section={section} onSectionChange={setSection} />
+                <ScrollControls pages={3} damping={0.1}>
+                    <ScrollManager section={section} onSectionChange={setSection} onCurrentPageChange={setCurrentPage}/>
                     <Scroll>
-                        <Experience section={section} isMenuOpened={menuOpened}/>
+                        <Experience section={section} isMenuOpened={menuOpened} currentPage={currentPage} />
                     </Scroll>
                     <Scroll html>
                         <Interface />

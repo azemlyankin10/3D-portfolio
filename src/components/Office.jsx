@@ -62,7 +62,7 @@ export function Office({ section }) {
     useFrame(() => {
         textureMaterial.opacity = opacityValue.get();
 
-        const t = (clock.getElapsedTime() / 50) % 1;
+        const t = (clock.getElapsedTime() / 90) % 1;
         const point = curve.getPoint(t); // Get a point on the curve
         const tangent = curve.getTangent(t).normalize(); // Get the tangent at the point
 

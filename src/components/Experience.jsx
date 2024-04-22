@@ -1,4 +1,4 @@
-import { Float, MeshDistortMaterial, MeshWobbleMaterial, Sky } from '@react-three/drei';
+import { Float, MeshDistortMaterial, MeshWobbleMaterial, Sky, useGLTF } from '@react-three/drei';
 import { motion } from 'framer-motion-3d';
 import { Office } from './Office';
 import { useEffect, useRef, useState } from 'react';
@@ -13,6 +13,8 @@ export const Experience = ({ section, isMenuOpened, currentPage }) => {
     console.log(currentPage);
     const { viewport } = useThree();
     const [currentAnimation, setCurrentAnimation] = useState('Typing')
+    const reactModel = useGLTF('materials/react_logo.glb')
+    const angularModel = useGLTF('materials/angular_brand.glb')
     // const { animation } = useControls({
     //     animation: {
     //         value: 'Typing',
@@ -81,9 +83,10 @@ export const Experience = ({ section, isMenuOpened, currentPage }) => {
                 animate={{ z: section === 1 ? 0 : -10, y: section === 1 ? -viewport.height : -1.5 }}
             >
                <Float>
-                    <mesh position={[1, -4, -15]} scale={[2, 2, 2]}>
-                        <sphereGeometry/>
-                        <MeshDistortMaterial color='red' opacity={0.8} transparent distort={0.4} speed={4} />
+                    <mesh position={[-10, 6, -15]} rotation-y={Math.PI + 0.4} scale={[2.5, 2.5, 2]}>
+                        <primitive object={angularModel.scene} />
+                        {/* <sphereGeometry/>
+                        <MeshDistortMaterial color='red' opacity={0.8} transparent distort={0.4} speed={4} /> */}
                     </mesh>
                </Float>
                <Float>
@@ -94,8 +97,9 @@ export const Experience = ({ section, isMenuOpened, currentPage }) => {
                </Float>
                <Float>
                     <mesh position={[-3, -3, -11]} scale={[1.4, 1.4, 1.4]}>
-                        <sphereGeometry/>
-                        <MeshWobbleMaterial color='blue' opacity={0.8} transparent factor={1} speed={5} />
+                        <primitive object={reactModel.scene} />
+                        {/* <sphereGeometry/>
+                        <MeshWobbleMaterial color='blue' opacity={0.8} transparent factor={1} speed={5} /> */}
                     </mesh>
                </Float>
             </motion.group>
